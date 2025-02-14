@@ -16,6 +16,10 @@ afkMonitorThing() {
     timeToKick = 600000; // 5 Minutes
 
     while(true) {
+        if ( level.players.size < 2) 
+            wait .05;
+            continue;
+
         foreach ( player in level.players ) {
             if ( player anyButtonPressed() ) {
                 player.afkTime = undefined;
@@ -26,16 +30,13 @@ afkMonitorThing() {
                 player.afkTime += 50;
 				continue;
             }
-
             if ( !isDefined(player.afkTime) )
                 player.afkTime = getTime();
-
-            PrintLn(getTime() - player.afkTime);
-
-            if ( (getTime() - player.afkTime) >= timeToKick ) {
+                
+            if ( (getTime() - player.afkTime) >= timeToKick )
                 Kick(player GetEntNum());
-            }
+
         }
-        wait 0.05;
+        wait .05;
     }
 }

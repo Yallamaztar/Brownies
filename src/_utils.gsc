@@ -1,11 +1,3 @@
-disableBomb() {
-    for(i = 0; i < level.bombzones.size; i++){
-        level.bombzones[i] maps\mp\gametypes\_gameobjects::setvisibleteam( "none" );
-    }
-    level.sdbomb maps\mp\gametypes\_gameobjects::setvisibleteam( "none" );
-    level.sdbomb maps\mp\gametypes\_gameobjects::allowcarry( "none" );
-}
-
 removeDeathBarriers() {
     barriers = GetEntArray("trigger_hurt", "classname");
     for ( i = 0; i < barriers.size; i++ ) {
