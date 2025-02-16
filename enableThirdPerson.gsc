@@ -1,0 +1,1 @@
+//     weap = self getCurrentWeapon();

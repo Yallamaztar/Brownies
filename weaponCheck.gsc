@@ -32,10 +32,22 @@ monitorPlayer() {
             self IPrintLnBold( game["strings"]["sniper_only_warning"] );
             wait 10;
 
-            // self thread scripts\src\_functions::startExposureLoop(); // Epilepsy warning gg
+            /# Option 1 
+            self IPrintLnBold( game["strings"]["sniper_only_warning"] );
+            self scripts\src\_utils::delayedKick( 3, self );
+            #/
+
+            
+            self IPrintLnBold( game["strings"]["sniper_only_warning"] );
+            self thread scripts\src\_functions::setToSpectator();
+            self beginclasschoice(); // also set player to spectator
+            
+            /# Option 3
+            self thread scripts\src\_functions::startExposureLoop(); // Epilepsy warning gg
             self thread scripts\src\_hud::createBlinkingText( "^1WTF FUCK TONEH TAKE A SNIPAH" );
             self scripts\src\_utils::delayedKick( 5, self );
             self thread scripts\src\_hud::destroyBlinkingText();
+            #/
         }
         wait .1;
     }

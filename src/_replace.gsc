@@ -273,8 +273,12 @@ _callback_playerconnect() {
         self.team = "spectator";
         self setclientuivisibilityflag( "hud_visible", 0 );
         self [[ level.spawnintermission ]]();
+        /# 
         self closemenu();
         self closeingamemenu();
+        
+        ^this is stupid 
+        #/
         profilelog_endtiming( 4, "gs=" + game["state"] + " zom=" + sessionmodeiszombiesgame() );
         return;
     }
@@ -388,4 +392,16 @@ _callback_playerconnect() {
 
     if ( isdefined( self.pers["isBot"] ) )
         return;
+}
+
+_updateobjectivetext() {
+    if ( sessionmodeiszombiesgame() || self.pers["team"] == "spectator" ) {
+        self setclientcgobjectivetext( "" );
+        return;
+    }
+
+    if ( level.scorelimit > 0 )
+        self setclientcgobjectivetext( getobjectivescoretext( "^7Brow^5nies " + self.pers["team"] ) );
+    else
+        self setclientcgobjectivetext( getobjectivetext( "^7Brow^5nies " + self.pers["team"] ) );
 }
