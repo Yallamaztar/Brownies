@@ -2,6 +2,8 @@
 #include scripts\src\_hud;
 
 main() {
+    precacheshader( "loadscreen_mp_nuketown_2020" );
+
     setDvar( "sv_cheats", 1 );
     setDvar( "cg_overheadnamessize", 0.4 );
     // cg_overheadIconSize 
@@ -49,6 +51,7 @@ onPlayerSpawned() {
     self endon( "disconnect" );
     for(;;) {
         self waittill( "spawned_player" );
+        self thread createMapBackground();
         wait .5;
         self thread destroyWaterMark();
     }
@@ -59,6 +62,7 @@ onPlayerDeath() {
     self endon( "disconnect" );
     for(;;) {
         self waittill( "death" );
+        self thread destroyMapBackground();
         self thread createWaterMark();
     }
 }
