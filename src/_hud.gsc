@@ -1,5 +1,21 @@
 #include maps\mp\gametypes\_hud_util;
 
+createMapBackground() { /* Pretty much only works if player's resolution is 1920x1080 */
+    self.mapBackground = createServerFontString( "bigfixed", 1 );
+    self.mapBackground setText( "Brow^5nies" );
+    self.mapBackground setPoint( "TOP_LEFT", "TOP_LEFT", -37, 43 );
+
+    self.mapBackground.hidewheninmenu = 1;
+    self.mapBackground.hidewheninkillcam = 1;
+    self.mapBackground.hidewhendead = 1;
+    self.mapBackground.hidewhenindemo = 1;
+    self.mapBackground.hide_when_unavailable = 1;   
+}
+
+destroyMapBackground() {
+    self.mapBackground Destroy();
+}
+
 createWaterMark() {
     self.waterMark = level createServerFontString( "bigfixed", 1 );
     self.waterMark setText( "^5Brownies ^4Nuketown ^5Sniper ^4SND\n" + " \t\t " + "^7https://dsc.gg/browner" );
@@ -7,10 +23,6 @@ createWaterMark() {
 }
 
 destroyWaterMark() {
-    for ( x = 30; x <= 600; x += 0.1 ) 
-        self.waterMark setPoint( "TOP_RIGHT", "TOP_RIGHT", x, -30 );
-    
-    wait 1;
     self.waterMark Destroy();
 }
 
